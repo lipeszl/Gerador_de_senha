@@ -27,7 +27,7 @@ main.py: Contém a interface gráfica do usuário (GUI) construída com Tkinter,
 logica.py: Contém a lógica para criar senhas e salvar as senhas geradas em um arquivo .txt.
 senhas_geradas.txt: Arquivo onde as senhas geradas são salvas com um timestamp.
 
-Uso
+##Uso
 
 Execute o arquivo main.py para iniciar a interface gráfica:
 
