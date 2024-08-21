@@ -9,7 +9,7 @@ Cor_Vermelha = "#f05a43"  # Vermelho
 
 janela = Tk()
 janela.title('')
-janela.geometry('350x380')
+janela.geometry('380x400')
 janela.configure(bg=Cor_Branca)
 
 # Frame das telas divididos
@@ -58,41 +58,54 @@ estado_1 = BooleanVar()
 estado_2 = BooleanVar()
 estado_3 = BooleanVar()
 estado_4 = BooleanVar()
+estado_5 = BooleanVar()
 
 # Área do botão das letras maiusculas
-check_1 = Checkbutton(frame_caracteres, width=1, var=estado_1, relief='flat', bg=Cor_Branca)
+check_1 = Checkbutton(frame_caracteres, onvalue=True, offvalue=False, width=1, var=estado_1, relief='flat', bg=Cor_Branca)
 check_1.grid(row=0, column=0, sticky=NW, padx=2, pady=5)
 app_info = Label(frame_caracteres, text='Letras maiusculas', height=1, padx=0, relief='flat', anchor='nw', font=('Ivy 10 bold'), bg=Cor_Branca, fg=Cor_Preta)
 app_info.grid(row=0, column=1, sticky=NW, padx=2, pady=5)
 
 # Área do botão das letras minusculas
-check_2 = Checkbutton(frame_caracteres, width=1, var=estado_2, relief='flat', bg=Cor_Branca)
+check_2 = Checkbutton(frame_caracteres, onvalue=True, offvalue=False, width=1, var=estado_2, relief='flat', bg=Cor_Branca)
 check_2.grid(row=1, column=0, sticky=NW, padx=2, pady=5)
 app_info = Label(frame_caracteres, text='Letras minusculas', height=1, padx=0, relief='flat', anchor='nw', font=('Ivy 10 bold'), bg=Cor_Branca, fg=Cor_Preta)
 app_info.grid(row=1, column=1, sticky=NW, padx=2, pady=5)
 
 # Área do botão dos números
-check_3 = Checkbutton(frame_caracteres, width=1, var=estado_3, relief='flat', bg=Cor_Branca)
+check_3 = Checkbutton(frame_caracteres, onvalue=True, offvalue=False, width=1, var=estado_3, relief='flat', bg=Cor_Branca)
 check_3.grid(row=2, column=0, sticky=NW, padx=2, pady=5)
 app_info = Label(frame_caracteres, text='Números', height=1, padx=0, relief='flat', anchor='nw', font=('Ivy 10 bold'), bg=Cor_Branca, fg=Cor_Preta)
 app_info.grid(row=2, column=1, sticky=NW, padx=2, pady=5)
 
 # Área do botão dos símbolos
-check_4 = Checkbutton(frame_caracteres, width=1, var=estado_4, relief='flat', bg=Cor_Branca)
+check_4 = Checkbutton(frame_caracteres, onvalue=True, offvalue=False, width=1, var=estado_4, relief='flat', bg=Cor_Branca)
 check_4.grid(row=3, column=0, sticky=NW, padx=2, pady=5)
 app_info = Label(frame_caracteres, text='Simbolos', height=1, padx=0, relief='flat', anchor='nw', font=('Ivy 10 bold'), bg=Cor_Branca, fg=Cor_Preta)
 app_info.grid(row=3, column=1, sticky=NW, padx=2, pady=5)
 
+# Área do botão do palindromo
+check_5 = Checkbutton(frame_caracteres, onvalue=True, offvalue=False, width=1, var=estado_5, relief='flat', bg=Cor_Branca)
+check_5.grid(row=4, column=0, sticky=NW, padx=2, pady=5)
+app_info = Label(frame_caracteres, text='Palindromos', height=1, padx=0, relief='flat', anchor='nw', font=('Ivy 10 bold'), bg=Cor_Branca, fg=Cor_Preta)
+app_info.grid(row=4, column=1, sticky=NW, padx=2, pady=5)
+
 # Função para gerar senha ao clicar no botão
+
 def gerar_senha():
     qtd_caracteres = var.get()
     usar_maiusculas = estado_1.get()
     usar_minusculas = estado_2.get()
     usar_numeros = estado_3.get()
     usar_simbolos = estado_4.get()
+    usar_palindromo = estado_5.get()
     
     senha = criar_senha(qtd_caracteres, usar_maiusculas, usar_minusculas, usar_numeros, usar_simbolos)
+    if usar_palindromo:
+        palindromo = senha[::-1]
+        senha = senha + palindromo
     app_senha.config(text=senha)
+    salvar_senha(senha)
 
 
 # Botão de gerar senha
